@@ -80,13 +80,20 @@ private
     end
 
     fetcher = Gem::SpecFetcher.fetcher
-    specs = fetcher.find_matching dep
+    if Gem::VERSION > "2"
+      specs = fetcher.search_for_dependency(dep).first
+      specs.map! { |(dep_gem, _, _), _|
+        next unless dep_gem.name =~ %r/^bones-(.*?)(?:-(\d+))?$/i
+        $2 ? [$1, $2.to_i] : $1
+      }
+    else
+      specs = fetcher.find_matching dep
 
-    specs.map! { |(name, _, _), _|
-      next unless name =~ %r/^bones-(.*?)(?:-(\d+))?$/i
-      $2 ? [$1, $2.to_i] : $1
-    }
-
+      specs.map! { |(name, _, _), _|
+        next unless name =~ %r/^bones-(.*?)(?:-(\d+))?$/i
+        $2 ? [$1, $2.to_i] : $1
+      }
+    end
     specs.compact!
     specs.uniq!
     return specs
