@@ -18,7 +18,7 @@ gems are not installed.
   end
 
   def run
-    stdout.write 'Looking up avaialble Mr Bones plugins ... '
+    stdout.write 'Looking up available Mr Bones plugins ... '
     stdout.flush
     plugins = find_bones_plugins
     stdout.puts 'done!'

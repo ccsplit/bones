@@ -11,3 +11,4 @@ pkg
 manual.txt
 .yardoc
 vendor
+*.swp

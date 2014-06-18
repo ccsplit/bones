@@ -64,7 +64,7 @@ class FileManager
     self
   end
 
-  # Gernate a new destination folder by copying files from the source, rename
+  # Generate a new destination folder by copying files from the source, rename
   # files and directories that contain "NAME", and perform ERB templating on
   # ".bns" files. The _name_ use used for file/folder renaming and ERB
   # templating.
